@@ -11,7 +11,7 @@ PASS=$3
 
 PORT=8080
 GCONTROL=/usr/local/lib/python2.7/dist-packages/gcontrol/git-shell-commands/gcontrol
-OUTPUT=/data/recordings/server-info
+OUTPUT=/data/readings/server-info
 
 DATE=$(date +%F)
 
