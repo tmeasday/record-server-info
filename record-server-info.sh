@@ -11,14 +11,17 @@ PASS=$3
 
 PORT=8080
 GCONTROL=/usr/local/lib/python2.7/dist-packages/gcontrol/git-shell-commands/gcontrol
+OUTPUT=/data/recordings/server-info
 
-DATE=$(date)
+DATE=$(date +%F)
 
 MACHINES=$(sudo -H -u $APP $GCONTROL inventory | grep MeteorApp)
 while read -r MACHINE; do
   IP=$(echo "$MACHINE" | cut -f 1 -d ' ')
   NAME=$(echo "$MACHINE" | cut -f 2 -d '/' | cut -f 1 -d ")")
 
-  OUTPUT=$(curl "http://$USER:$PASS@$IP:$PORT/info")
-  echo $OUTPUT
+  OUTDIR="$OUTPUT/$NAME"
+  mkdir -p OUTDIR
+
+  curl "http://$USER:$PASS@$IP:$PORT/info" > "$OUTDIR/$DATE.json"
 done <<< "$MACHINES"
