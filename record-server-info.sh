@@ -13,7 +13,7 @@ PORT=8080
 GCONTROL=/usr/local/lib/python2.7/dist-packages/gcontrol/git-shell-commands/gcontrol
 OUTPUT=/data/readings/server-info
 
-DATE=$(date +%F)
+DATE=$(date +%F-%H:%M:%S)
 
 MACHINES=$(sudo -H -u $APP $GCONTROL inventory | grep MeteorApp)
 while read -r MACHINE; do
