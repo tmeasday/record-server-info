@@ -21,7 +21,7 @@ while read -r MACHINE; do
   NAME=$(echo "$MACHINE" | cut -f 2 -d '/' | cut -f 1 -d ")")
 
   OUTDIR="$OUTPUT/$NAME"
-  mkdir -p OUTDIR
+  mkdir -p $OUTDIR
 
   curl "http://$USER:$PASS@$IP:$PORT/info" > "$OUTDIR/$DATE.json"
 done <<< "$MACHINES"
